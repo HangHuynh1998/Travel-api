@@ -7,16 +7,14 @@ const TourSchema = new Schema({
     place:{type:String,require:true},
     title: { type: String, required: true },
     price: { type: Number, required: true },
-    content: { type: String, required: true },
     image : { type: String, required: true },
     contactInformation: { type: String },
-    startDate: { type: Date },
-    endDate: { type: Date },
+    startDate: { type: Date,required: true},
+    endDate: { type: Date ,required: true},
     description: { type: String, required: true },
     status: { type: String, enum: ["open", "expired"], default: "open" },
-    isApplied: {type : Array},
+    isApplied: [{ type: Schema.Types.ObjectId, ref: 'Customer' }],
     sale:{type:Number},
-    isChoosed: [{ type: Schema.Types.ObjectId, ref: 'Customer' }]
 }, {
         timestamps: true,
     })

@@ -6,7 +6,6 @@ const CustomerSchema = new Schema(
     user_id: { type: Schema.Types.ObjectId, ref: 'User', required: true },
     saved_tours: [{ type: Schema.Types.ObjectId, ref: 'Tour' }],
     applied_tours:[{ type: Schema.Types.ObjectId, ref: 'Tour' }],
-    choose_tours: [{ type: Schema.Types.ObjectId, ref: 'Tour' }],
     followed_companies: [{ type: Schema.Types.ObjectId, ref: 'Companies' }],
   },
   {

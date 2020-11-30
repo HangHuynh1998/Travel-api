@@ -4,7 +4,7 @@ const moment = require("moment")
 const Schema = mongoose.Schema;
 const Joi = require('joi');
 
-const ROLES = ["admin", "mod", "customer", "company"];
+const ROLES = ["admin","customer", "company"];
 const STATUS = ["blocked", "active", "pending"];
 
 const UserSchema = new Schema({
