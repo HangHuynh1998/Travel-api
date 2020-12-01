@@ -166,20 +166,21 @@ const register = (user_type) => async (req, res) => {
             } catch (err) {
                 res.sendError(err.message);
             }
-        } else {
-            if (req.files) {
-                // delete photos videos
-                const delete_avatar = req.files.avatar ? req.files.avatar[0].filename : '';
+         } 
+        //else {
+        //     if (req.files) {
+        //         // delete photos videos
+        //         const delete_avatar = req.files.avatar ? req.files.avatar[0].filename : '';
 
-                deleteFilesUploaded([
-                    ...delete_avatar
-                ]).then(_ => {
-                    res.sendError(err_message, code, errors);
-                })
-            } else {
-                res.sendError(err_message, code, errors);
-            }
-        }
+        //         deleteFilesUploaded([
+        //             ...delete_avatar
+        //         ]).then(_ => {
+        //             res.sendError(err_message, code, errors);
+        //         })
+        //     } else {
+        //         res.sendError(err_message, code, errors);
+        //     }
+        //}
     }
 
     try {
@@ -191,15 +192,9 @@ const register = (user_type) => async (req, res) => {
             phone: req.body.phone,
             address: req.body.address,
             description:req.body.description,
+            avatar: req.body.avatar,
             role: user_type,  
         };
-
-        if (req.files && req.files != undefined) {
-            user_data = {
-                ...user_data,
-                avatar: req.files.avatar ? req.files.avatar[0].filename : '',
-            }
-        }
 
         // check provider
         if (req.body.jwt_token && pareJwtToken(req.body.jwt_token)) {
@@ -230,7 +225,7 @@ const register = (user_type) => async (req, res) => {
             case "company": {
                 user_data = {
                     ...user_data,
-                    avatar: req.files.avatar ? req.files.avatar[0].filename : '',
+                    //avatar: req.files.avatar ? req.files.avatar[0].filename : '',
                     address: req.body.address ? req.body.address : "haichau",
                 }
                 company_data = {
