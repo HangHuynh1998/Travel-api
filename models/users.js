@@ -55,8 +55,9 @@ UserSchema.methods.checkPassword = function (password) {
 }
 
 UserSchema.post('save', function (error, doc, next) {
-    if (error.name === 'MongoError' && error.code === 11000) 
-        next(new Error('Địa chỉ email đã tồn tại'));
+    if (error.name === 'MongoError' && error.code === 11000) {
+    next(new Error('Địa chỉ email đã tồn tại'));
+    }
     else next(error);
 });
 

@@ -130,7 +130,7 @@ const getUserProfile = (res, user) => {
 const login = (req, res) => {
     let email = req.body.email.toLowerCase();
     let password = req.body.password;
-    User.findOne({ "email": email, role: { "$in": [ROLES[2], ROLES[3]] } }, (err, user) => {
+    User.findOne({ "email": email, role: { "$in": [ROLES[1], ROLES[2]] } }, (err, user) => {
         if (user && user.checkPassword(password)) {
             getUserProfile(res, user);
         } else {
@@ -169,11 +169,9 @@ const register = (user_type) => async (req, res) => {
         } else {
             if (req.files) {
                 // delete photos videos
-                const delete_background = req.files.background ? req.files.background[0].filename : '';
                 const delete_avatar = req.files.avatar ? req.files.avatar[0].filename : '';
 
                 deleteFilesUploaded([
-                    ...delete_background,
                     ...delete_avatar
                 ]).then(_ => {
                     res.sendError(err_message, code, errors);
@@ -233,12 +231,12 @@ const register = (user_type) => async (req, res) => {
                 user_data = {
                     ...user_data,
                     avatar: req.files.avatar ? req.files.avatar[0].filename : '',
-                    background: req.files.background ? req.files.background[0].filename : '',
+                    address: req.body.address ? req.body.address : "haichau",
                 }
                 company_data = {
-                    category_id: req.body.category_id ? req.body.category_id : "",
-                    position: req.body.position ? req.body.position : "haichau",
-                    name: req.body.name ? req.body.name : ""
+                    ...company_data,
+                    name: req.body.name ? req.body.name : "",
+                    description: req.body.description ? req.body.description :""
                 }
                 companyRegister({
                     user_data,

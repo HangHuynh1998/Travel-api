@@ -13,7 +13,6 @@ router.get("/profile", authCtrl.getProfile);
 
 router.post("/register/company", uploadMedia.fields([
     { name: 'avatar', maxCount: 1 },
-    { name: 'background', maxCount: 1 }
 ]), authCtrl.register('company'));
 
 router.post("/register/customer", authCtrl.register("customer"));
