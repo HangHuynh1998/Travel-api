@@ -13,7 +13,7 @@ const getCompany = (key, value) => {
     return new Promise((resolve, reject) => {
         Company.findOne(query)
             .populate("user_id", "-password")
-            .populate("category_id")
+            //.populate("category_id")
             .then(doc => {
                 if (doc == null) throw new Error("Company not found");
                 resolve(doc);
@@ -28,7 +28,7 @@ const getCompanyDetails = (id) => {
     return new Promise((resolve, reject) => {
         Company.findById(id)
             .populate("user_id", "-password")
-            .populate("category_id")
+            //.populate("category_id")
             .then(doc => {
                 if (doc == null) throw new Error("Company not found");
                 resolve(doc);
@@ -44,9 +44,9 @@ const getAllCompany = (filter) => {
     if (filter.searchName) {
         query["name"] = { '$regex' : filter.searchName, '$options' : 'i' };
     }
-    if (filter.searchCategory) {
-        query["category_id"] = filter.searchCategory;
-    }
+    // if (filter.searchCategory) {
+    //     query["category_id"] = filter.searchCategory;
+    // }
     if (filter.searchPosition) {
         query["position"] = filter.searchPosition;
     }
@@ -61,7 +61,7 @@ const getAllCompany = (filter) => {
             .skip(pageIndex * perPage)
             .limit(perPage)
             .populate("user_id", "-password")
-            .populate("category_id")
+            //.populate("category_id")
             .then(doc => {
                 if (doc == null) throw new Error("Companies not found");
                 resolve(doc);
@@ -94,10 +94,10 @@ const getCompanyTours = (id, filter) => {
                     select: { 'password': 0 }
                 }
             })
-            .populate({
-                path: "category_id",
-                model: "Categories",
-            })
+            // .populate({
+            //     path: "category_id",
+            //     model: "Categories",
+            // })
             .populate({
                 path: "isApplied",
                 model: "Customer",

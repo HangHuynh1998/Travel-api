@@ -166,21 +166,9 @@ const register = (user_type) => async (req, res) => {
             } catch (err) {
                 res.sendError(err.message);
             }
-         } 
-        //else {
-        //     if (req.files) {
-        //         // delete photos videos
-        //         const delete_avatar = req.files.avatar ? req.files.avatar[0].filename : '';
-
-        //         deleteFilesUploaded([
-        //             ...delete_avatar
-        //         ]).then(_ => {
-        //             res.sendError(err_message, code, errors);
-        //         })
-        //     } else {
-        //         res.sendError(err_message, code, errors);
-        //     }
-        //}
+        }else {
+            res.sendError(err_message)
+        }
     }
 
     try {

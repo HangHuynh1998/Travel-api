@@ -23,6 +23,7 @@ mongoose.connect(process.env.MONGOOSE_DB_URL ,{ useNewUrlParser: true , useUnifi
     
 })
 
+
 //router
 app.get("/",(req,res) => {
     res.send('We are on home')

@@ -12,7 +12,6 @@ const UserSchema = new Schema({
     password: { type: String },
     name: { type: String },
     phone: { type: Number,default:0},
-    birthday: { type: Date },
     address: { type: String ,default:""},
     // longitude: { type: Number },
     // latitude: { type: Number },

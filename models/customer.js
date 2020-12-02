@@ -7,6 +7,8 @@ const CustomerSchema = new Schema(
     saved_tours: [{ type: Schema.Types.ObjectId, ref: 'Tour' }],
     applied_tours:[{ type: Schema.Types.ObjectId, ref: 'Tour' }],
     followed_companies: [{ type: Schema.Types.ObjectId, ref: 'Companies' }],
+    birthday: { type: Date },
+    gender:{type: Boolean}
   },
   {
     timestamps: true
