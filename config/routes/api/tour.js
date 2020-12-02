@@ -3,10 +3,9 @@ const router = require("express").Router();
 const { tourCtrl } = require("../../../controllers/api");
 // Middleware
 const {
-    jwtAuth, hasRole, uploadMedia
+    jwtAuth, hasRole
 } = require('../../middleware');
-
-router.post("/", jwtAuth, hasRole('company'),uploadMedia, tourCtrl.addTour);
+router.post("/", jwtAuth, hasRole('company'), tourCtrl.addTour);
 router.get("/", tourCtrl.getAllTour);
 router.get("/:id/category", tourCtrl.getCategoryTours);
 router.get("/:id", tourCtrl.getTourDetails);

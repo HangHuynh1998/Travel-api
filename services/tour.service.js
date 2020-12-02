@@ -98,9 +98,8 @@ const addTour = (company_id, body) => {
                 let data = {
                     company_id: company_id,
                     name: body.name,
-                    title: body.title,
                     price: body.price,
-                    content: body.content,
+                    place: body.place,
                     description: body.description,
                     image: body.image,
                     startDate: body.startDate,

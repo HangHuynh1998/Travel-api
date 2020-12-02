@@ -10,7 +10,7 @@ const getUserToken = (user) => {
 module.exports = (req, res, next) => {
     if (req.headers &&
         req.headers.authorization &&
-        req.headers.authorization.split(' ')[0] === 'Token') {
+        req.headers.authorization.split(' ')[0] === 'Bearer') {
 
         let jwtToken = req.headers.authorization.split(' ')[1];
         try {

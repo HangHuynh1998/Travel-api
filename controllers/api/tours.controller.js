@@ -1,7 +1,7 @@
 const { tourService } = require("../../services");
 
 const getAllTour = (req, res) => {
-    tourService.getAllTour(req.query)
+    tourService.getAllTours(req.query)
         .then(data => {
             res.sendData(data);
         })
@@ -67,4 +67,4 @@ module.exports = {
     getTourDetails,
     editTour,
     deleteTour
-};
+};  

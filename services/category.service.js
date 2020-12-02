@@ -26,8 +26,26 @@ const getCategoryDetail = (id) => {
         })
     })
 }
+const addCategories = (body) =>{
+        console.log("aaa");
+        return new Promise(async (resolve, reject) => {
+            try {
+                    let data = {
+                        name: body.name,
+                        description: body.description,
+                    }
+                    let categories = new Categorie(data);
+                    await categories.save();
+                    return resolve("Successful")
+                
+            } catch (error) {
+                return reject(error)
+            }
+        })
+}
 
 module.exports = {
     getAllCategories,
     getCategoryDetail,
+    addCategories
 }

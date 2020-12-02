@@ -19,8 +19,18 @@ const getCategoryDetail = (req, res) => {
         res.sendError(err.message);
     })
 };
+const addCategories = (req,res) => {
+    categoryService.addCategories(req.body)
+    .then(data => {
+        res.sendData(data);
+    })
+    .catch(err => {
+        res.sendError(err.message);
+    })
+}
 
 module.exports = {
     getAllCategories,
     getCategoryDetail,
+    addCategories
 };
