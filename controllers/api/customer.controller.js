@@ -85,7 +85,15 @@ const getFollowedCompany = (req, res) => {
         res.sendError(err.message);
     })
 }
-
+const getFollowedCompanyTour = (req,res) => {
+    customerService.getFollowedCompanyTour(req.user._id)
+    .then(data => {
+        res.sendData(data);
+    })
+    .catch(err => {
+        res.sendError(err.message);
+    })
+}
 const toggleFollowCompany = (req, res) => {
     customerService.toggleFollowCompany(req.user._id, req.params.company_id)
     .then(data => {
@@ -105,6 +113,7 @@ module.exports = {
     toggleSavedTour,
     // APPLICATIONS
     getCustomerApplications,
+    getFollowedCompanyTour,
     getFollowedCompany,
     toggleFollowCompany
 

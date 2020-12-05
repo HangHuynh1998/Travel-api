@@ -8,6 +8,7 @@ let port = process.env.PORT || 3001;
  //middlewares
  app.use(cors())
 app.use(bodyParser.json())
+app.engine('ejs',require('express-ejs-extend'))
 //
 // app.use("/posts",()=>{
 //     console.log("This is middlewares running...");

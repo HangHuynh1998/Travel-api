@@ -1,18 +1,19 @@
 const { mailerUtil } = require('../utils')
 const { EMAIL_TYPE, Mailer } = mailerUtil
 const gigZooAdmin = process.env.MAIL_USERNAME_ADMIN;
-const gigZooAdminEmail = process.env.MAIL_USERNAME;
+const gigZooAdminEmail = "travel110998@gmail.com";
 const { SEND_REFER_FRIEND_MAIL,SEND_EMAIL_ADMIN } = EMAIL_TYPE
 const APP_DOMAIN = require("../config/index").APP_DOMAIN;
 const getUrlRefer = APP_DOMAIN + `/login`
 const sendMailReferFriend = async (email,subject,content) => {
+     console.log(email,subject,content,"o90000000")
     try {
         try {
             Mailer(
                 `"Travel" <${gigZooAdminEmail}>`,
                 email
             ).sendMail(SEND_REFER_FRIEND_MAIL, {
-                urlRefer:getUrlRefer
+                urlRefer:"getUrlRefer"
             });
             Mailer(
                 `"Travel" <${gigZooAdminEmail}>`,

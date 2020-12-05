@@ -93,7 +93,7 @@ const getAllSavedTours = (id) => {
             })
             .then(doc => {
                 if (doc == null) throw new Error("Customer not found !");
-                resolve(doc.saved_jobs);
+                resolve(doc.saved_tours);
             })
             .catch(err => {
                 reject(err);
@@ -179,6 +179,34 @@ const getFollowedCompany = (id) => {
     })
 }
 
+const getFollowedCompanyTour = (id) => {
+    return new Promise((resolve, reject) => {
+        Customer.findById(id, "followed_companies -_id")
+
+            .populate({
+                path: "followed_companies",
+                model: "Tour",
+                populate: [
+                    {
+                        path: "company_id",
+                        model: "Companies",
+                        populate: {
+                            path: "user_id",
+                            model: "User",
+                            select: "-password"
+                        }
+                    }
+                ],
+            })
+            .then(doc => {
+                if (doc == null) throw new Error("Customer not found !");
+                resolve(doc.followed_companies);
+            })
+            .catch(err => {
+                reject(err);
+            })
+    })
+}
 const toggleFollowCompany = (id, company_id) => {
     return new Promise((resolve, reject) => {
         Customer.findById(id)
@@ -218,6 +246,7 @@ module.exports = {
     toggleSavedTour,
     // APPLICATIONS
     getCustomerApplications,
+    getFollowedCompanyTour,
     getFollowedCompany,
     toggleFollowCompany
 }

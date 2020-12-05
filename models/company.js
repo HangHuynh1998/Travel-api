@@ -5,8 +5,9 @@ const CompaniesSchema = new Schema(
   {
     user_id: { type: Schema.Types.ObjectId, ref: 'User', required: true },
     tour_id: [{ type: Schema.Types.ObjectId, ref: 'Tour'}],
-    numberTour: { type: Number, default: 0 },
+   // numberTour: { type: Number, default: 0 },
     name: { type: String },
+    numberFollow:{type: Number, default:0},
     description: {type:String}
   },
   {

@@ -13,6 +13,12 @@ const getAllTours = (filter) => {
     if (filter.searchCategory) {
         query["category_id"] = filter.searchCategory;
     }
+    if (filter.searchPlace) {
+        query["place"] = filter.searchPlace;
+    }
+    if (filter.searchNumberPeople) {
+        query["numberPeople"] = filter.searchNumberPeople;
+    }
     if (filter.price) {
         query["price"] = filter.price;
     }

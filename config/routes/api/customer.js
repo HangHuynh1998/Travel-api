@@ -20,6 +20,7 @@ router.get("/detail/applied-tours", jwtAuth, hasRole('customer'), customerCtrl.g
 // APPLICATIONS
 router.get("/detail/my-applications", jwtAuth, hasRole('customer'), customerCtrl.getCustomerApplications);
 router.get("/detail/followed-companies", jwtAuth, hasRole('customer'), customerCtrl.getFollowedCompany);
+router.get("/detail/followed-companies-tours", jwtAuth, hasRole('customer'), customerCtrl.getFollowedCompanyTour);
 router.put("/detail/followed-companies/:company_id", jwtAuth, hasRole('customer'), customerCtrl.toggleFollowCompany);
 
 module.exports = router;

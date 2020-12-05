@@ -17,9 +17,9 @@ const smtpTransport = nodemailer.createTransport({
 });
 
 const EMAIL_TYPE = {
-    SEND_REFER_FRIEND_MAIL: 'Welcome to Travel!',
-    SEND_EMAIL_ADMIN: 'Travel thông báo có người gửi yêu cầu đặt tour du lịch đến công ty bạn!',
-    SEND_EMAIL_BOOK_TRAVEL: 'Travel thông báo có người đặt tour của công ty bạn! ',
+    SEND_REFER_FRIEND_MAIL: 'Welcome to DaNangJob!',
+    SEND_EMAIL_ADMIN: 'DaNangJob thông báo có người gửi yêu cầu tìm việc đến công ty bạn!',
+    SEND_EMAIL_APPLY_JOB: 'DaNangJob thông báo có người ứng tuyển việc làm của công ty bạn! ',
 }
 
 function Mailer(from, to) {
@@ -43,12 +43,24 @@ function Mailer(from, to) {
             }
             switch (emailType) {
                 case EMAIL_TYPE.SEND_REFER_FRIEND_MAIL: {
+                    handleSendMail(
+                        emailType,
+                        '../views/templates-mail/ReferFriendMail.ejs',
+                    )
                     break;
                 }
                 case EMAIL_TYPE.SEND_EMAIL_ADMIN: {
+                    handleSendMail(
+                        emailType,
+                        '../views/templates-mail/InformSeekerRequestJob.ejs',
+                    )
                     break;
                 }
-                case EMAIL_TYPE.SEND_EMAIL_BOOK_TRAVEL: {
+                case EMAIL_TYPE.SEND_EMAIL_APPLY_JOB: {
+                    handleSendMail(
+                        emailType,
+                        '../views/templates-mail/InformSeekerApplyJob.ejs',
+                    )
                     break;
                 }
                 default: reject(new Error('emailType is required'))

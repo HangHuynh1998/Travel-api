@@ -1,5 +1,6 @@
 const {User, validatePass} = require('../models/users')
 const bcrypt = require("bcryptjs");
+const { updateDocument } = require("../utils/updateDocument");
 const getAllUser = () => {
   return new Promise((resolve,reject) =>{
       User.find()
@@ -30,29 +31,31 @@ const getUser = (id) =>{
 const updateUser = (id, body) => {
     return new Promise(async(resolve,reject)=>{
         try{
+            console.log("updaad",id, body);
             let user = await User.findById(id)
             if(user == null) throw new Error("User not found");
-            const oldAvatar = user.avatar;
-            const newAvatar = body.avatar;
+            // const oldAvatar = user.avatar;
+            // const newAvatar = body.avatar;
 
-            user.avatar = oldAvatar;
-            user.set({
-                avatar: newAvatar ? newAvatar : oldAvatar,
-                isUpdateProfile:true,
-            });
+            // user.address = "oldAvatar";
+            // user.set({
+            //     avatar: newAvatar ? newAvatar : oldAvatar,
+            //     isUpdateProfile:true,
+            // });
+            console.log("user", user);
             await updateDocument(user, User, body, ['role', 'status','password']);
             await user.save()
-            if (user.role == "customer") {
-                let customer = await Customer.findOne({ user_id: user._id });
-                await updateDocument(customer, Customer, body, ['user_id']);
-                await customer.save();
-                customerService.getCustomer("user_id", user._id).then(resolve).catch(reject);
-            } else if (user.role == "company") {
-                let company = await Companie.findOne({ user_id: user._id });
-                await updateDocument(company, Companie, body, ['user_id']);
-                await company.save();
-                companyService.getCompany("user_id", user._id).then(resolve).catch(reject);
-            }
+            // if (user.role == "customer") {
+            //     let customer = await Customer.findOne({ user_id: user._id });
+            //     await updateDocument(customer, Customer, body, ['user_id']);
+            //     await customer.save();
+            //     customerService.getCustomer("user_id", user._id).then(resolve).catch(reject);
+            // } else if (user.role == "company") {
+            //     let company = await Companie.findOne({ user_id: user._id });
+            //     await updateDocument(company, Companie, body, ['user_id']);
+            //     await company.save();
+            //     companyService.getCompany("user_id", user._id).then(resolve).catch(reject);
+            // }
             // resolve("Update successful")
         } catch (error) {
             reject(error)
