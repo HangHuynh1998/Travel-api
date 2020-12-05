@@ -8,7 +8,7 @@ const { updateDocument } = require("../utils/updateDocument");
 const getAllTours = (filter) => {
     let query = {};
     if (filter.searchName) {
-        query["title"] = { '$regex' : filter.searchName, '$options' : 'i' };
+        query["name"] = { '$regex' : filter.searchName, '$options' : 'i' };
     }
     if (filter.searchCategory) {
         query["category_id"] = filter.searchCategory;
@@ -98,6 +98,7 @@ const addTour = (company_id, body) => {
                 let data = {
                     company_id: company_id,
                     name: body.name,
+                    numberPeople:body.numberPeople,
                     price: body.price,
                     place: body.place,
                     description: body.description,

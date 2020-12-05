@@ -6,6 +6,7 @@ const TourSchema = new Schema({
     category_id: { type: Schema.Types.ObjectId, ref: 'Categories', required: true  }, 
     place:{type:String,require:true},
     name: { type: String, required: true },
+    numberPeople:{ type: Number, required: true },
     price: { type: Number, required: true },
     image : { type: String, required: true },
     contactInformation: { type: String },

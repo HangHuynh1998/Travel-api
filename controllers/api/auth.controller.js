@@ -234,7 +234,7 @@ const register = (user_type) => async (req, res) => {
             case "customer": {
                 customer_data = {
                     birthday: req.body.birthday ? req.body.birthday : "",
-                    gender: req.body.gender ? req.body.gender : ""
+                    gender: req.body.gender ? req.body.gender : false
                 }
                 customerRegister({
                     user_data,

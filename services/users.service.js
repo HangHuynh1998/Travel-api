@@ -32,20 +32,12 @@ const updateUser = (id, body) => {
         try{
             let user = await User.findById(id)
             if(user == null) throw new Error("User not found");
-            if(body.files){
-                body.avatar = body.files.avatar ? body.files.avatar[0].filename :""
-                body.background = body.files.background ? body.files.background[0].filename : ""
-            }
             const oldAvatar = user.avatar;
             const newAvatar = body.avatar;
-            const oldBackground = user.background;
-            const newBackground = body.background;
 
             user.avatar = oldAvatar;
-            user.background = oldBackground;
             user.set({
                 avatar: newAvatar ? newAvatar : oldAvatar,
-                background: newBackground ? newBackground : oldBackground,
                 isUpdateProfile:true,
             });
             delete body.avatar;
@@ -66,10 +58,6 @@ const updateUser = (id, body) => {
             }
             // resolve("Update successful")
         } catch (error) {
-            if (body.files) {
-                deleteOneFile(body.files.avatar ? body.files.avatar[0].filename : '');
-                deleteOneFile(body.files.background ? body.files.background[0].filename : '');
-            }
             reject(error)
             
         }
