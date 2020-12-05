@@ -54,7 +54,7 @@ const getAllSavedTours = (req, res) => {
 }
 
 const toggleSavedTour = (req, res) => {
-    customerService.toggleSavedTour(req.user._id, req.params.job_id)
+    customerService.toggleSavedTour(req.user._id, req.params.tour_id)
     .then(data => {
         res.sendData(data);
     })

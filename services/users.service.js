@@ -40,9 +40,6 @@ const updateUser = (id, body) => {
                 avatar: newAvatar ? newAvatar : oldAvatar,
                 isUpdateProfile:true,
             });
-            delete body.avatar;
-            delete body.background;
-
             await updateDocument(user, User, body, ['role', 'status','password']);
             await user.save()
             if (user.role == "customer") {

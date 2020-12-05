@@ -101,16 +101,16 @@ const getAllSavedTours = (id) => {
     })
 }
 
-const toggleSavedTour = (id, job_id) => {
+const toggleSavedTour = (id, tour_id) => {
     return new Promise((resolve, reject) => {
         Customer.findById(id)
             .then(doc => {
                 if (doc == null) throw new Error("Customer not found !");
-                let i = doc.saved_tours.indexOf(job_id);
+                let i = doc.saved_tours.indexOf(tour_id);
                 if (i != -1) {
                     doc.saved_tours.splice(i, 1);
                 } else {
-                    doc.saved_tours.push(job_id)
+                    doc.saved_tours.push(tour_id)
                 }
                 doc.save(err => {
                     if (err) {
@@ -160,7 +160,7 @@ const getFollowedCompany = (id) => {
         Customer.findById(id, "followed_companies -_id")
             .populate({
                 path: "followed_companies",
-                model: "Companie",
+                model: "Companies",
                 populate: [
                     {
                         path: "user_id",
