@@ -1,11 +1,10 @@
 const mongoose = require('mongoose');
 const Schema = require("mongoose").Schema;
 const CommentSchema = new mongoose.Schema({
-    user_id: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-    tour_id: { type: Schema.Types.ObjectId, ref: 'Tour', required: true },
+    customer_id: { type: Schema.Types.ObjectId, ref: 'Customer', required: true },
     image:{type:String},
-    status:{type:Boolean,default:true},
-    nameWriter:String,
+    status:{type:String,enum: ["open", "block"], default: "open"},
+    name:String,
     comment:String,
 });
 

@@ -2,10 +2,10 @@ const router = require('express').Router();
 const {
     commentCtrl
 } = require("../../../controllers/api");
-router.post('/comment', commentCtrl.addComment);
-router.get("/comment", commentCtrl.getAllComment);
-router.get("/comment/:id",commentCtrl.getComment);
-router.delete("/comment/:id",commentCtrl.deleteComment);
-
+const { jwtAuth, hasRole } = require("../../middleware");
+router.post('/', jwtAuth, hasRole('customer'),commentCtrl.addComment);
+router.get("/", commentCtrl.getAllComment);
+router.put("/:id", jwtAuth, hasRole('customer'),commentCtrl.editComment);
+router.delete("/:id",commentCtrl.deleteComment);
 
 module.exports = router;
