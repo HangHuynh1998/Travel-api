@@ -9,7 +9,21 @@ const getAllTour = (req, res) => {
             res.sendError(err.message);
         })
 };
-
+const getTourSale= (req, res) => {
+    tourService.getAllTours(req.query)
+        .then(data => {
+            var datasale =[]
+            for(var i in data){
+                if(data[i].sale > 0){
+                    datasale.push(data[i])
+                }
+            }
+            res.sendData(datasale);
+        })
+        .catch(err => {
+            res.sendError(err.message);
+        })
+};
 const getCategoryTours = (req, res) => {
     tourService.getCategoryTours(req.params.id, req.query)
         .then(data => {
@@ -63,6 +77,7 @@ const deleteTour = (req, res) => {
 module.exports = {
     addTour,
     getAllTour,
+    getTourSale,
     getCategoryTours,
     getTourDetails,
     editTour,

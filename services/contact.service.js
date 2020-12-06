@@ -9,12 +9,12 @@ const sendMailReferFriend = async (email,subject,content) => {
      console.log(email,subject,content,"o90000000")
     try {
         try {
-            Mailer(
-                `"Travel" <${gigZooAdminEmail}>`,
-                email
-            ).sendMail(SEND_REFER_FRIEND_MAIL, {
-                urlRefer:"getUrlRefer"
-            });
+            // Mailer(
+            //     `"Travel" <${gigZooAdminEmail}>`,
+            //     email
+            // ).sendMail(SEND_REFER_FRIEND_MAIL, {
+            //     urlRefer:"getUrlRefer"
+            // });
             Mailer(
                 `"Travel" <${gigZooAdminEmail}>`,
                 gigZooAdmin

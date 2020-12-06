@@ -13,7 +13,7 @@ const TourSchema = new Schema({
     startDate: { type: Date,required: true},
     endDate: { type: Date ,required: true},
     description: { type: String, required: true },
-    status: { type: String, enum: ["open", "expired"], default: "open" },
+    status: { type: String, enum: ["open", "block"], default: "open" },
     isApplied: [{ type: Schema.Types.ObjectId, ref: 'Customer' }],
     sale:{type:Number},
 }, {
