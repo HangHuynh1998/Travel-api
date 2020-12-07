@@ -94,10 +94,10 @@ const getCompanyTours = (id, filter) => {
                     select: { 'password': 0 }
                 }
             })
-            // .populate({
-            //     path: "category_id",
-            //     model: "Categories",
-            // })
+            .populate({
+                path: "category_id",
+                model: "Categories",
+            })
             .populate({
                 path: "isApplied",
                 model: "Customer",
