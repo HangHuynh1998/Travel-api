@@ -14,7 +14,7 @@ const getAllTourPlace = (req, res) => {
     .then(data => {
         var datasale =[]
         for(var i in data){
-            if(data[i].place.toLowerCase().indexOf(req.body.searchPlace.toLowerCase()) !== -1){
+            if(data[i].place.toLowerCase().indexOf(req.query.place.toLowerCase()) !== -1){
                 datasale.push(data[i])
             }
         }
@@ -29,7 +29,7 @@ const getAllTourName = (req, res) => {
     .then(data => {
         var dataname =[]
         for(var i in data){
-            if(data[i].name.toLowerCase().indexOf(req.body.searchName.toLowerCase()) !== -1){
+            if(data[i].name.toLowerCase().indexOf(req.query.name.toLowerCase()) !== -1){
                 dataname.push(data[i])
             }
         }
@@ -44,7 +44,7 @@ const getAllTourCompany = (req, res) => {
     .then(data => {
         var dataname =[]
         for(var i in data){
-            if(data[i].company_id.user_id.name.toLowerCase().indexOf(req.body.searchCompany.toLowerCase()) !== -1){
+            if(data[i].company_id.user_id.name.toLowerCase().indexOf(req.query.company.toLowerCase()) !== -1){
                 dataname.push(data[i])
             }
         }
@@ -59,7 +59,7 @@ const getAllTourPrice = (req, res) => {
     .then(data => {
         var dataname =[]
         for(var i in data){
-            if(data[i].price <= req.body.searchPrice){
+            if(data[i].price <= req.query.price){
                 dataname.push(data[i])
             }
         }

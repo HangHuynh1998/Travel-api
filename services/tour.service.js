@@ -7,21 +7,21 @@ const { updateDocument } = require("../utils/updateDocument");
 
 const getAllTours = (filter) => {
     let query = {};
-    if (filter.searchName) {
-        query["name"] = { '$regex' : filter.searchName, '$options' : 'i' };
-    }
+    // if (filter.searchName) {
+    //     query["name"] = { '$regex' : filter.searchName, '$options' : 'i' };
+    // }
     if (filter.searchCategory) {
         query["category_id"] = filter.searchCategory;
     }
-    if (filter.searchPlace) {
-        query["place"] = filter.searchPlace;
-    }
-    if (filter.searchNumberPeople) {
-        query["numberPeople"] = filter.searchNumberPeople;
-    }
-    if (filter.price) {
-        query["price"] = filter.price;
-    }
+    // if (filter.searchPlace) {
+    //     query["place"] = filter.searchPlace;
+    // }
+    // if (filter.searchNumberPeople) {
+    //     query["numberPeople"] = filter.searchNumberPeople;
+    // }
+    // if (filter.price) {
+    //     query["price"] = filter.price;
+    // }
     if (filter.status) {
         query["status"] = filter.status;
     }
