@@ -82,6 +82,10 @@ const getTourSale= (req, res) => {
                     datasale.push(data[i])
                 }
             }
+            if(req.body.limit){
+                datasale.splice(req.body.limit)
+            }
+           
             res.sendData(datasale);
         })
         .catch(err => {

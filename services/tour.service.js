@@ -22,7 +22,9 @@ const getAllTours = (filter) => {
     if (filter.price) {
         query["price"] = filter.price;
     }
-
+    if (filter.status) {
+        query["status"] = filter.status;
+    }
     console.log(query)
     let pageIndex = filter.page ? Number(filter.page) - 1 : 0;
     let perPage = filter.limit ? Number(filter.limit) : 1000;
@@ -54,7 +56,6 @@ const getAllTours = (filter) => {
             })
     })
 }
-
 const getCategoryTours = (id, filter) => {
     let query = { category_id: id };
     if (filter.tourType) {
