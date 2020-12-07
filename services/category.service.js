@@ -27,7 +27,6 @@ const getCategoryDetail = (id) => {
     })
 }
 const addCategories = (body) =>{
-        console.log("aaa");
         return new Promise(async (resolve, reject) => {
             try {
                     let data = {

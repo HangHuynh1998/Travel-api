@@ -12,7 +12,6 @@ const getAllTour = (req, res) => {
 const getAllTourPlace = (req, res) => {
     tourService.getAllTours(req.query)
     .then(data => {
-        console.log("da",req.body);
         var datasale =[]
         for(var i in data){
             if(data[i].place.toLowerCase().indexOf(req.body.searchPlace.toLowerCase()) !== -1){
@@ -28,7 +27,6 @@ const getAllTourPlace = (req, res) => {
 const getAllTourName = (req, res) => {
     tourService.getAllTours(req.query)
     .then(data => {
-        console.log("da",req.body);
         var dataname =[]
         for(var i in data){
             if(data[i].name.toLowerCase().indexOf(req.body.searchName.toLowerCase()) !== -1){
@@ -44,7 +42,6 @@ const getAllTourName = (req, res) => {
 const getAllTourCompany = (req, res) => {
     tourService.getAllTours(req.query)
     .then(data => {
-        console.log("da",req.body);
         var dataname =[]
         for(var i in data){
             if(data[i].company_id.user_id.name.toLowerCase().indexOf(req.body.searchCompany.toLowerCase()) !== -1){
@@ -60,7 +57,6 @@ const getAllTourCompany = (req, res) => {
 const getAllTourPrice = (req, res) => {
     tourService.getAllTours(req.query)
     .then(data => {
-        console.log("da",req.body);
         var dataname =[]
         for(var i in data){
             if(data[i].price <= req.body.searchPrice){

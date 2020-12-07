@@ -6,7 +6,19 @@ const customerService = require("../../services/customer.service");
 const getAllComment = (req, res) => {
     commentService.getAllComments(req.query)
         .then(data => {
-            res.sendData(data);
+            var datacomment =[]
+            if(req.query.status){
+                for(var i in data){
+                    if(data[i].status === req.query.status){
+                        datacomment.push(data[i])
+                    }
+                }
+                //  console.log("hhhshs",datacomment);
+                res.sendData(datacomment);
+            }else{
+                res.sendData(data);
+            }
+            
         })
         .catch(err => {
             res.sendError(err.message);
