@@ -46,6 +46,7 @@ const getAllComments = (filter) => {
                     name: body.name,
                     image: body.image,
                     comment: body.comment,
+                    title: body.title,
                 }
                 let comment = new Comment(data);
                 await comment.save();

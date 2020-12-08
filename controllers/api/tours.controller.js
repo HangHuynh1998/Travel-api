@@ -70,7 +70,8 @@ const getAllTourPrice = (req, res) => {
     })
 };
 const getTourSale= (req, res) => {
-    tourService.getAllTours(req.query)
+    let query = {}
+    tourService.getAllTours(query)
         .then(data => {
             var datasale =[]
             for(var i in data){
@@ -78,11 +79,19 @@ const getTourSale= (req, res) => {
                     datasale.push(data[i])
                 }
             }
-            if(req.body.limit){
-                datasale.splice(req.body.limit)
+            var datasalestatus = []
+            if(req.query.status){
+                for(var i in datasale){
+                    if(datasale[i].status === "open" ){
+                        datasalestatus.push(datasale[i])
+                    }
+                }  
+            }
+            if(req.query.limit){
+                datasalestatus.splice(req.query.limit)
             }
            
-            res.sendData(datasale);
+            res.sendData(datasalestatus);
         })
         .catch(err => {
             res.sendError(err.message);
