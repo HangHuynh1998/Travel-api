@@ -181,6 +181,8 @@ const register = (user_type) => async (req, res) => {
             address: req.body.address,
             description:req.body.description,
             avatar: req.body.avatar,
+            birthday: req.body.birthday,
+            gender:req.body.gender,
             role: user_type,  
         };
 

@@ -13,10 +13,7 @@ const UserSchema = new Schema({
     name: { type: String },
     phone: { type: Number,default:0},
     address: { type: String ,default:""},
-    // longitude: { type: Number },
-    // latitude: { type: Number },
     avatar: { type: String },
-    background: { type: String },
     description: { type: String },
     provider: {
         type: { type: String, enum: ['facebook', 'google'] },
@@ -27,7 +24,9 @@ const UserSchema = new Schema({
     status: { type: String, enum: STATUS, default: STATUS[1] },
     reset_password_code: { type: String },
     reset_password_expires: { type: Date },
-    isUpdateProfile:{type:Boolean,default:false}
+    isUpdateProfile:{type:Boolean,default:false},
+    birthday: { type: Date },
+    gender:{type: Boolean}
 }, {
         timestamps: true,
     })

@@ -39,7 +39,7 @@ const changePassword = (req, res) => {
     let oldPass = req.body.old_pass;
     let newPass = req.body.new_pass;
     let newPassRetype = req.body.new_pass_retype;
-    userService.changePassword(id, oldPass, newPass, newPassRetype)
+    usersService.changePassword(id, oldPass, newPass, newPassRetype)
         .then(data => {
             res.sendData(data);
         })

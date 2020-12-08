@@ -56,7 +56,7 @@ const updateUser = (id, body) => {
             //     await company.save();
             //     companyService.getCompany("user_id", user._id).then(resolve).catch(reject);
             // }
-            // resolve("Update successful")
+            resolve("Update successful")
         } catch (error) {
             reject(error)
             
@@ -64,32 +64,30 @@ const updateUser = (id, body) => {
     })
 }
 const changePassword = (id, oldPass, newPass, newPassRetype) => {
-    return new Promise((resolve,reject)=>{
-        if(!oldPass || !newPass || !newPassRetype) return ({ message: "Bạn cần nhập đầy đủ thông tin"})
+    return new Promise((resolve, reject) => {
+        if (!oldPass || !newPass || !newPassRetype) return reject({ message: "Bạn cần nhập đầy đủ thông tin." });
         User.findById(id).then(doc => {
-            if(doc == null) throw new Error ("User not found")
-            if(doc.ChangePassword(oldPass)){
-                const {error} = validatePass({data : {password: newPass}});
-                if(error){
-                    reject(error)
-                }else{
-                    if(newPass == newPassRetype){
-                        doc.set({password: bcrypt.hashSync(newPass,10)});
+            if (doc == null) throw new Error("User not found");
+            if (doc.checkPassword(oldPass)) {
+                const { error } = validatePass(data = { password: newPass });
+                if (error) {
+                    reject(error);
+                } else {
+                    if (newPass == newPassRetype) {
+                        doc.set({ password: bcrypt.hashSync(newPass, 10) });
                         doc.save(err => {
-                            if(err){
-                                reject(err)
-                            }else{
-                                resolve("Mật khẩu đã thay đổi thành công!")
+                            if (err) {
+                                reject(err);
+                            } else {
+                                resolve("Mật khẩu đã thay đổi thành công!");
                             }
                         })
-
-                    }else{
-                        reject({message:"Nhập lại mật khẩu chưa đúng"})
+                    } else {
+                        reject({ message: "Nhập lại mật khẩu chưa đúng!" });
                     }
                 }
-            }else{
-                reject({message:"Mật khẩu cũ chưa đúng"
-                })
+            } else {
+                reject({ message: "Mật khẩu cũ chưa đúng!" });
             }
         }).catch(err => {
             reject(err)
