@@ -17,9 +17,9 @@ const smtpTransport = nodemailer.createTransport({
 });
 
 const EMAIL_TYPE = {
-    SEND_REFER_FRIEND_MAIL: 'Welcome to DaNangJob!',
-    SEND_EMAIL_ADMIN: 'DaNangJob thông báo có người gửi yêu cầu tìm việc đến công ty bạn!',
-    SEND_EMAIL_APPLY_JOB: 'DaNangJob thông báo có người ứng tuyển việc làm của công ty bạn! ',
+    SEND_REFER_FRIEND_MAIL: 'Welcome to Travel!',
+    //SEND_EMAIL_ADMIN: 'TRave thông báo có người gửi yêu cầu tìm việc đến công ty bạn!',
+    SEND_EMAIL_APPLY_TOUR: 'Travel thông báo có người đặt tour của công ty bạn! ',
 }
 
 function Mailer(from, to) {
@@ -56,7 +56,7 @@ function Mailer(from, to) {
                     )
                     break;
                 }
-                case EMAIL_TYPE.SEND_EMAIL_APPLY_JOB: {
+                case EMAIL_TYPE.SEND_EMAIL_APPLY_TOUR: {
                     handleSendMail(
                         emailType,
                         '../views/templates-mail/InformSeekerApplyJob.ejs',

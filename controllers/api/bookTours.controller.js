@@ -1,9 +1,27 @@
 const { booktTourService } = require("../../services");
 
 const sendMailBookTour = async (req, res) => {
-    const {emailCompany,nameCompany,name,gender, birthday ,address,emailCustomer,phone,startDate,numberOf,isHotel,requirement,tour_id,message } = req.body;
+    const { 
+        tour_id,
+        emailcompany,
+        nameCompany,
+        nameTour,
+        nameCustomer,
+        emailCustomer,
+        address,
+        phone,
+        required } = req.body;
 
-    await booktTourService.sendMailApplyTour(emailCompany,nameCompany,name,gender, birthday ,address,emailCustomer,phone,startDate,numberOf,isHotel,requirement,tour_id,message)
+    await booktTourService.sendMailApplyTour(
+        tour_id,
+        emailcompany,
+        nameCompany,
+        nameTour,
+        nameCustomer,
+        emailCustomer,
+        address,
+        phone,
+        required)
         .then(data => {
             res.sendData(data);
         })

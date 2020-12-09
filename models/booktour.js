@@ -4,10 +4,12 @@ const Schema = mongoose.Schema;
 const BookTourSchema = new Schema({
     customer_id: { type: Schema.Types.ObjectId, ref: 'Customer', required: true },
     tour_id: { type: Schema.Types.ObjectId, ref: 'Tour', required: true },
-    bookDate:{ type: Date  },
-    startDate: { type: Date},
-    numberOf:{ type: Number },
-    requirement: { type: String},
+    nameTour: {type:String},
+    nameCustomer: {type:String},
+    emailCustomer: {type:String},
+    address: {type:String},
+    phone: {type:Number},
+    required:{type:String},
 }, {
         timestamps: true,
     })
