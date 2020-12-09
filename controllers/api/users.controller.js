@@ -48,9 +48,19 @@ const changePassword = (req, res) => {
         })
 
 }
+const deleteUser = (req, res) => {
+    usersService.deleteUser(req.params.id)
+        .then(data => {
+            res.sendData(data);
+        })
+        .catch(err => {
+            res.sendError(err.message);
+        })
+}
 module.exports = {
     getAllUsers,
     getUser,
     updateUser,
-    changePassword
+    changePassword,
+    deleteUser
 }

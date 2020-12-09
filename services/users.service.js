@@ -94,10 +94,25 @@ const changePassword = (id, oldPass, newPass, newPassRetype) => {
         })
     })
 }
+const deleteUser = (id) => {
+    return new Promise(async(resolve, reject) => {
+        let user = await User.deleteOne({ _id: id },async (err, doc) => {        
+            if (doc == null) return reject({ message: "User not found !" });
+            if (err) {
+                reject(err);
+            } else {
+                //await user.save();
+                resolve("Delete user successfully");
+            };
+        })
+    });
+  };
+
 
 module.exports = {
     getAllUser,
     getUser,
     updateUser,
-    changePassword
+    changePassword,
+    deleteUser
 }
