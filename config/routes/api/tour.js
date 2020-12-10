@@ -15,6 +15,6 @@ router.get("/price", tourCtrl.getAllTourPrice);
 router.get("/:id/category", tourCtrl.getCategoryTours);
 router.get("/:id", tourCtrl.getTourDetails);
 router.put("/:id", jwtAuth, hasRole('company'), tourCtrl.editTour);
-router.delete("/:id",jwtAuth, hasRole('company'), tourCtrl.deleteTour);
+router.delete("/:id", tourCtrl.deleteTour);
 
 module.exports = router

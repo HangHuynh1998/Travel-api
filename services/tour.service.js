@@ -181,6 +181,7 @@ const editTour = (id, user, body) => {
 const deleteTour = (id) => {
     return new Promise( async (resolve, reject) => {
         let tour = await Tour.findById(id);
+        console.log(tour);
         let company = await Company.findById(tour.company_id);
         Tour.findOneAndDelete({ _id: id }, async (err, doc) => {        
             if (doc == null) return reject({ message: "Tour not found !" });

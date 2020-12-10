@@ -1,4 +1,5 @@
 const { customerService } = require("../../services");
+const customer = require("../../models/customer");
 
 const getCustomer = (req, res) => {
     let id = req.params.id;
@@ -103,7 +104,15 @@ const toggleFollowCompany = (req, res) => {
         res.sendError(err.message);
     })
 }
-
+const deleteCustomer = (req, res) => {
+    customerService.deleteCustomer(req.params.id)
+        .then(data => {
+            res.sendData(data);
+        })
+        .catch(err => {
+            res.sendError(err.message);
+        })
+}
 module.exports = {
     getCustomer,
     getCustomerUserid,
@@ -115,6 +124,7 @@ module.exports = {
     getCustomerApplications,
     getFollowedCompanyTour,
     getFollowedCompany,
-    toggleFollowCompany
+    toggleFollowCompany,
+    deleteCustomer
 
 }

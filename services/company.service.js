@@ -13,7 +13,7 @@ const getCompany = (key, value) => {
     return new Promise((resolve, reject) => {
         Company.findOne(query)
             .populate("user_id", "-password")
-            //.populate("category_id")
+            .populate("category_id")
             .then(doc => {
                 if (doc == null) throw new Error("Company not found");
                 resolve(doc);
@@ -28,7 +28,7 @@ const getCompanyDetails = (id) => {
     return new Promise((resolve, reject) => {
         Company.findById(id)
             .populate("user_id", "-password")
-            //.populate("category_id")
+            .populate("category_id")
             .then(doc => {
                 if (doc == null) throw new Error("Company not found");
                 resolve(doc);
@@ -61,7 +61,7 @@ const getAllCompany = (filter) => {
             .skip(pageIndex * perPage)
             .limit(perPage)
             .populate("user_id", "-password")
-            //.populate("category_id")
+            .populate("category_id")
             .then(doc => {
                 if (doc == null) throw new Error("Companies not found");
                 resolve(doc);
@@ -136,11 +136,24 @@ const getTourApplications = (company_id, tour_id) => {
         }
     })
 }
-
+const deleteCompany = (id) => {
+    return new Promise( async (resolve, reject) => {
+        Company.findOneAndDelete({ _id: id }, async (err, doc) => {        
+            if (doc == null) return reject({ message: "Company not found !" });
+            if (err) {
+                reject(err);
+            } else {
+                resolve("Delete Company successfully");
+            };
+        })
+        
+    })
+}
 module.exports = {
     getCompany,
     getAllCompany,
     getCompanyDetails,
     getCompanyTours,
-    getTourApplications
+    getTourApplications,
+    deleteCompany
 }

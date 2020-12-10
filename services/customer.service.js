@@ -237,7 +237,19 @@ const toggleFollowCompany = (id, company_id) => {
             })
     })
 }
-
+const deleteCustomer = (id) => {
+    return new Promise( async (resolve, reject) => {
+        Customer.findOneAndDelete({ _id: id }, async (err, doc) => {        
+            if (doc == null) return reject({ message: "Customer not found !" });
+            if (err) {
+                reject(err);
+            } else {
+                resolve("Delete Customer successfully");
+            };
+        })
+        
+    })
+}
 module.exports = {
     getCustomer,
     getAllCustomer,
@@ -248,5 +260,6 @@ module.exports = {
     getCustomerApplications,
     getFollowedCompanyTour,
     getFollowedCompany,
-    toggleFollowCompany
+    toggleFollowCompany,
+    deleteCustomer
 }

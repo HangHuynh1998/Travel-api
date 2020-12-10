@@ -130,7 +130,7 @@ const getUserProfile = (res, user) => {
 const login = (req, res) => {
     let email = req.body.email.toLowerCase();
     let password = req.body.password;
-    User.findOne({ "email": email, role: { "$in": [ROLES[1], ROLES[2]] } }, (err, user) => {
+    User.findOne({ "email": email, role: { "$in": [ROLES[0],ROLES[1], ROLES[2]] } }, (err, user) => {
         if (user && user.checkPassword(password)) {
             getUserProfile(res, user);
         } else {
@@ -138,7 +138,17 @@ const login = (req, res) => {
         }
     })
 }
-
+// const loginAdmin = (req, res) => {
+//     let email = req.body.email.toLowerCase();
+//     let password = req.body.password;
+//     User.findOne({ "email": email, role: { "$in": [ROLES[0],ROLES[1], ROLES[2]] } }, (err, user) => {
+//         if (user && user.checkPassword(password)) {
+//             getUserProfile(res, user);
+//         } else {
+//             res.sendError("Email hoặc mật khẩu chưa đúng.", res.CODE.UNAUTHORIZED);
+//         }
+//     })
+// }
 const social_login = (req, res) => {
     let provider_type = req.user.provider.provider_type;
     let email = req.user.provider.email.toLowerCase();

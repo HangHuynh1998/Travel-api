@@ -53,11 +53,20 @@ const getTourApplications = (req, res) => {
             res.sendError(err.message);
         })
 }
-
+const deleteCompany = (req, res) => {
+    companyService.deleteCompany(req.params.id)
+        .then(data => {
+            res.sendData(data);
+        })
+        .catch(err => {
+            res.sendError(err.message);
+        })
+}
 module.exports = {
     getCompany,
     getCompanyTours,
     getAllCompany,
     getCompanyDetails,
     getTourApplications,
+    deleteCompany
 };

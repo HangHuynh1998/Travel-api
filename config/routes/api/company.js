@@ -12,5 +12,6 @@ router.get("/booktour/:tour_id", jwtAuth, hasRole('company'), companyCtrl.getTou
 router.get("/", companyCtrl.getAllCompany);
 router.get("/:id", companyCtrl.getCompanyDetails);
 router.get("/user_id/:id", companyCtrl.getCompany);
+router.delete("/:id",companyCtrl.deleteCompany)
 
 module.exports = router
