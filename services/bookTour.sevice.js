@@ -71,8 +71,8 @@ const addApplication = (customer_id, body) => {
             phone: body.phone,
             required: body.required,
           };
-          let booktour = new Booktour(data);
-          await booktour.save();
+          // let booktour = new Booktour(data);
+          // await booktour.save();
           customer.applied_tours.push(body.tour_id);
           await customer.save();
           tour.isApplied.push(customer_id);
@@ -80,18 +80,7 @@ const addApplication = (customer_id, body) => {
           await Tour.findByIdAndUpdate(body.tour_id, { isApplied: tour.isApplied.push(customer_id) })
           try {
             Mailer(`"Travel" <${gigZooAdminEmail}>`, emailcompany).sendMail(
-              SEND_EMAIL_APPLY_TOUR,
-              {
-                tour_id: body.tour_id,
-                emailcompany: body.emailcompany,
-                nameCompany: body.nameCompany,
-                nameTour: body.nameTour,
-                nameCustomer: body.nameCustomer,
-                emailCustomer: body.emailCustomer,
-                address: body.address,
-                phone: body.phone,
-                required: body.required,
-              }
+              SEND_EMAIL_APPLY_TOUR,data
             );
           } catch (err) {
             console.log("adminSendMailRefer", err);

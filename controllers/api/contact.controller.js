@@ -1,6 +1,7 @@
 const { contactService } = require("../../services");
 const sendReferFriendMail = async (req, res) => {
-    const {   tour_id,
+    const {  
+        tour_id,
         emailcompany,
         nameCompany,
         nameTour,

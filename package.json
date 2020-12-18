@@ -58,7 +58,7 @@
     "ramda": "^0.25.0",
     "sendmail": "^1.4.1",
     "shelljs": "^0.8.2",
-    "socket.io": "^2.1.1",
+    "socket.io": "^2.3.0",
     "socketio-jwt": "^4.5.0",
     "time-ago": "^0.2.1",
     "underscore": "^1.9.1"
